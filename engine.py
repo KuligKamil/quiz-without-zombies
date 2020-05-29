@@ -35,8 +35,8 @@ questions = [{
      ]}
 ]
 clear(80)
-signs = string.ascii_uppercase[:4]
-for question in questions:
+
+for index, question in enumerate(questions):
     print(question['content'])
     for i, answer in enumerate(question['answers']):
         print(signs[i], answer['content'])
@@ -53,7 +53,10 @@ for question in questions:
         points += 1
     else:
         print('Wrong answer')
-    input("Please enter to get next question")
+    if index == len(questions) - 1:
+        input("Please enter to get result")
+    else:
+        input("Please enter to get next question")
     clear(80)
 
 print('Result: ', points, '/ ', len(questions))
