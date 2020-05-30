@@ -27,8 +27,12 @@ for index, question in enumerate(questions):
     for i, answer in enumerate(question['answers']):
         print(signs[i], answer['content'])
 
-    answer = input("Please enter sign answer: ")
-    print("You entered: " + answer)
+    is_answer_not_ok = True
+    while is_answer_not_ok:
+        answer = input("Please enter sign answer: ")
+        print("You entered: " + answer)
+        if answer in signs:
+            is_answer_not_ok = False
     helper = -1
     for i, sign in enumerate(signs):
         if sign == answer:
