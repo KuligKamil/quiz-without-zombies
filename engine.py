@@ -1,4 +1,12 @@
 import string
+import yaml
+
+with open("data.yml", 'r') as stream:
+    try:
+        questions = yaml.safe_load(stream)
+        print(yaml.safe_load(stream))
+    except yaml.YAMLError as e:
+        print(e)
 
 
 def clear(num):
@@ -9,33 +17,7 @@ def clear(num):
 signs = string.ascii_uppercase[:4]
 points = 0
 
-questions = [{
-    'content': 'Which team won the 2018 World Cup?',
-    'answers': [
-        {'content': 'French', 'is_correct': True},
-        {'content': 'England'},
-        {'content': 'Spain'},
-        {'content': 'Croatia'}
-    ]
-}, {
-    'content': 'Which team won Europe Cup in 2016?',
-    'answers': [
-        {'content': 'Portugal ', 'is_correct': True},
-        {'content': 'Poland'},
-        {'content': 'Russia'},
-        {'content': 'French'}
-    ]
-},
-    {'content': 'Won Champion League in 2012?',
-     'answers': [
-         {'content': 'Bayern Munich'},
-         {'content': 'Real Madryt'},
-         {'content': 'Manchester United'},
-         {'content': 'Chelsea F.C.', 'is_correct': True}
-     ]}
-]
 clear(80)
-
 for index, question in enumerate(questions):
     print(question['content'])
     for i, answer in enumerate(question['answers']):
