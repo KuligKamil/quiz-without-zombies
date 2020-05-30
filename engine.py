@@ -1,5 +1,6 @@
 import string
 import yaml
+from get_data import get_questions_from_api
 
 with open("data.yml", 'r') as stream:
     try:
@@ -7,6 +8,9 @@ with open("data.yml", 'r') as stream:
         print(yaml.safe_load(stream))
     except yaml.YAMLError as e:
         print(e)
+questions = questions + get_questions_from_api()
+print(questions)
+print(len(questions))
 
 
 def clear(num):
