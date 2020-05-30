@@ -1,5 +1,8 @@
 import string
+import random
 import yaml
+
+
 from get_data import get_questions_from_api
 
 with open("data.yml", 'r') as stream:
@@ -20,6 +23,11 @@ def clear(num):
 
 signs = string.ascii_uppercase[:4]
 points = 0
+
+random.shuffle(questions)
+
+for question in questions:
+    random.shuffle(question['answers'])
 
 clear(80)
 for index, question in enumerate(questions):
