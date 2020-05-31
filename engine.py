@@ -1,13 +1,15 @@
 import string
 import random
 import time
-from data import get_questions_from_yml, get_questions_from_api
+
+from data import get_questions_from_yml, get_questions_from_api, get_questions_from_db
 
 TIME_LIMIT = 15
 time_total = 0
 signs = string.ascii_uppercase[:4]
 points = 0
-questions = get_questions_from_yml('data.yml') + get_questions_from_api()
+# questions = get_questions_from_yml('data.yml') + get_questions_from_api()
+questions = get_questions_from_db()
 
 random.shuffle(questions)
 for question in questions:
