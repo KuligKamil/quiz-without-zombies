@@ -21,9 +21,9 @@ def clear(num):
 
 clear(80)
 for index, question in enumerate(questions):
-    print(question['content'])
+    print(question['name'])
     for i, answer in enumerate(question['answers']):
-        print(signs[i], answer['content'])
+        print(signs[i], answer['name'])
     time_start = time.time()
     time_elapsed = 0
     is_answer_not_ok = True
@@ -42,7 +42,7 @@ for index, question in enumerate(questions):
         for i, sign in enumerate(signs):
             if sign == answer:
                 helper = i
-        print(question['answers'][helper]['content'])
+        print(question['answers'][helper]['name'])
         if 'is_correct' in question['answers'][helper]:
             print('Good answer')
             points += 1

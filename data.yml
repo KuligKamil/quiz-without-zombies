@@ -1,21 +1,21 @@
-- content: Which team won the 2018 World Cup?
+- name: Which team won the 2018 World Cup?
   answers:
-    - content: French
+    - name: French
       is_correct: True
-    - content: England
-    - content: Spain
-    - content: Croatia
-- content: Which team won Europe Cup in 2016?
+    - name: England
+    - name: Spain
+    - name: Croatia
+- name: Which team won Europe Cup in 2016?
   answers:
-    - content: Portugal
+    - name: Portugal
       is_correct: True
-    - content: Poland
-    - content: Russia
-    - content: French
-- content: Won Champion League in 2012?
+    - name: Poland
+    - name: Russia
+    - name: French
+- name: Won Champion League in 2012?
   answers:
-    - content: Chelsea F.C.
+    - name: Chelsea F.C.
       is_correct: True
-    - content: Bayern Munich
-    - content: Manchester United
-    - content: Real Madryt
+    - name: Bayern Munich
+    - name: Manchester United
+    - name: Real Madryt
