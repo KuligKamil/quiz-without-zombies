@@ -1,13 +1,16 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, func, DateTime
 from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
 
-class Quiz(Base):
-    __tablename__ = 'quiz'
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+class Time:
+    created = Column(DateTime, server_default=func.now())
+    modified = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class Quiz(Base, Time):
     name = Column(String)
     question = relationship("Question", backref="parent")
 
@@ -15,9 +18,7 @@ class Quiz(Base):
         self.name = name
 
 
-class Question(Base):
-    __tablename__ = 'question'
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+class Question(Base, Time):
     name = Column(String)
     quiz_id = Column(Integer, ForeignKey('quiz.id'))
     answer = relationship("Answer", backref="parent")
@@ -28,9 +29,7 @@ class Question(Base):
         self.quiz = quiz
 
 
-class Answer(Base):
-    __tablename__ = 'answer'
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+class Answer(Base, Time):
     name = Column(String)
     is_correct = Column(Boolean, default=False)
     question_id = Column(Integer, ForeignKey('question.id'))
