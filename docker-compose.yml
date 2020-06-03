@@ -8,6 +8,8 @@ services:
         POSTGRES_USER: 'unicorn_user'
     #        POSTGRES_USER: "${POSTGRES_USER}"
     #    image: "postgres" # use latest official postgres version
+    ports:
+        - "${HOSTPORT}:${PGSQLPORT}"
     env_file:
       - db.env # configure postgres
     volumes:
