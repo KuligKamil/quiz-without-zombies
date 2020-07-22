@@ -8,8 +8,9 @@ Create Date: 2020-06-02 20:51:07.991634
 from alembic import op
 import sqlalchemy as sa
 
-
 # revision identifiers, used by Alembic.
+from db.alembic.fill.date import fill_db
+
 revision = '1841a1032d45'
 down_revision = '2dc3aae62a35'
 branch_labels = None
@@ -25,6 +26,7 @@ def upgrade():
     op.add_column('quiz', sa.Column('created', sa.DateTime(), server_default=sa.text('now()'), nullable=True))
     op.add_column('quiz', sa.Column('modified', sa.DateTime(), server_default=sa.text('now()'), nullable=True))
     # ### end Alembic commands ###
+    fill_db(op)
 
 
 def downgrade():

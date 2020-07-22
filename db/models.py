@@ -5,8 +5,8 @@ from db.util_db import Base
 
 
 class Time:
-    created = Column(DateTime, server_default=func.now())
-    modified = Column(DateTime, server_default=func.now(), onupdate=func.now())
+    created = Column(DateTime(timezone=True), server_default=func.now())
+    modified = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
 
 class Quiz(Base, Time):
