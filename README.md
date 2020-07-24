@@ -2,6 +2,12 @@
 
 Console game
 ## Notes:
+### Docker Compose
+ `docker-compose up`
+ `docker-compose down`
+ `docker-compose build`
+### Docker Alembic
+ `docker-compose run web alembic revision --autogenerate -m "Add timezone for datetime"`
 ### Docker
 - Build an image from the Dockerfile and assign it a name.
 
@@ -16,7 +22,7 @@ This sets a number of environment variables that can then be used to connect:
 
 `$ docker run --rm -t -i --link pg_test:pg eg_postgresql bash`
 
-`postgres@7ef98b1b7243:/$ psql -h $PG_PORT_5432_TCP_ADDR -p $PG_PORT_5432_TCP_PORT -d docker -U docker --password`
+`postgres@7ef98b1b7243:/$ psql -h $PG_PORT_5432_TCP_ADDR -p $PG_PORT_5432_TCP_PORT -d rainbow_database -U unicorn_user --password`
 
 ### Alembic
 - When start alembic or edit:
@@ -36,9 +42,9 @@ This sets a number of environment variables that can then be used to connect:
         `target_metadata = models.Base.metadata`
         
     - alembic/alembic.ini
-    
-        `sqlalchemy.url = postgres://docker:docker@localhost:32768/docker`
-
+        for example:
+        `sqlalchemy.url = postgres://docker:docker@localhost:32772/docker`
+-
 - What do after change models:
     - `alembic revision --autogenerate -m "what you change in model"`
     - `alembic upgrade head`  
