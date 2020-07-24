@@ -20,7 +20,7 @@ class Quiz(Base, Time):
 class Question(Base, Time):
     name = Column(String)
     quiz_id = Column(Integer, ForeignKey('quiz.id'))
-    answer = relationship("Answer", backref="parent")
+    answers = relationship("Answer", backref="parent")
     quiz = relationship("Quiz", backref="child")
 
     def __init__(self, name, quiz):
