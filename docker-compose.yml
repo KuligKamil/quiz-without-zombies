@@ -1,0 +1,40 @@
+version: '3'
+services:
+  db:
+    image: postgres:11
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+  web:
+    build: .
+    command: bash -c "sleep 7; alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+#services:
+#  db:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - "127.0.0.1:5423:5423"
+#    env_file:
+#      - .env # configure postgres
+#    volumes:
+#      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+#volumes:
+#  database-data: # named volumes can be managed easier using docker-compose
