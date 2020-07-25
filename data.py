@@ -5,9 +5,7 @@ import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 
 from db.models import Quiz, Question, Answer
-from env import URL
-
-print(URL)
+from settings import DATABASE_URL_DOCKER
 
 
 def get_questions_from_api():
@@ -41,7 +39,7 @@ def get_questions_from_yml(name_file):
 
 
 def get_questions_from_db():
-    engine = sqlalchemy.create_engine(URL)
+    engine = sqlalchemy.create_engine(DATABASE_URL_DOCKER)
     engine.connect()
     Session = sessionmaker(bind=engine)
     session = Session()
